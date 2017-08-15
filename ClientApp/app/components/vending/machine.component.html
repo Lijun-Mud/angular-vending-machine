@@ -1,0 +1,33 @@
+﻿<div class="container">
+    <h1>Vending machine simulator</h1>
+    <div class="col-md-8 machine">
+        <div class="col-md-4 cell" *ngFor="let cell of cells" [ngClass]="{'selected':cell===selectedCell,'sold':cell.sold}"
+             (click)="selected(cell)">
+            <div class="col-md-6 image">
+                <img src="{{cell.product.category.getImageUrl()}}" title="{{cell.product.category.name}}"/>
+            </div>
+            <div class="col-md-6 productInfo">
+                <div>{{cell.product.name}}</div>
+                <h4>{{cell.stock}}</h4>
+                <h4>$ {{cell.product.price}}</h4>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-4">
+            <h4>
+                Paid: $
+                <span id="total">{{paid}}</span>
+            </h4>
+            <div >
+                <img *ngFor="let coin of acceptedCoins" src="{{coin.getImageUrl()}}" (click)="acceptCoin(coin)"/>
+            </div>
+            <h3>
+                <div>{{selectedCell.product.name}}</div>
+                <div>
+                    $ 
+                    <span>{{selectedCell.product.price}}</span> 
+                </div>   
+            </h3>
+            <button (click)="pay()" [disabled]="!canPay()" class="btn-default btn-primary payButton">Pay</button>
+        </div>
+</div>

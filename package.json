@@ -2,6 +2,8 @@
   "name": "angular_vending_machine",
   "version": "0.0.0",
   "scripts": {
+    "webpack-dev": "webpack",
+    "webpack-dev-css": "webpack --config webpack.config.vendor.js  && npm run webpack-dev",
     "test": "karma start ClientApp/test/karma.conf.js"
   },
   "dependencies": {

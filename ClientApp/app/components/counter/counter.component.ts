@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import testObject from "./js.object";
 
 @Component({
     selector: 'counter',
@@ -9,5 +10,8 @@ export class CounterComponent {
 
     public incrementCounter() {
         this.currentCount++;
+    }
+    constructor() {
+        testObject();
     }
 }

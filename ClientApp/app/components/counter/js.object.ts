@@ -1,5 +1,7 @@
-﻿export default function () {
-    log("foo @@@", foo.length, foo.prototype, foo.constructor);
+﻿let callbackLog:Function;
+export default function (callback) {
+   callbackLog = callback;
+   log("foo @@@", foo.length, foo.prototype, foo.constructor);
 
     {
         let gadget = new Gadget("webcam", "black");
@@ -7,6 +9,8 @@
         log(gadget.constructor.prototype, "@", gadget.rating);
         log(gadget.constructor.prototype.constructor, "@", gadget.constructor.prototype.constructor.prototype);
         log(gadget.constructor.prototype.constructor.prototype.constructor.prototype);
+        log("gadget.constructor.prototype.constructor.propertyIsEnumerable",
+            gadget.constructor.prototype.constructor.propertyIsEnumerable('price'));
     }
     {
         Gadget.prototype.name = "new name";
@@ -14,14 +18,26 @@
         log("prototype.name  @@@", gadget.name);
         delete gadget.name;
         log("prototype.name after delete  @@@", gadget.name);
-        for (let i in gadget) {
-            log(i,gadget[i]);
-        }
+        gadget.name = "self name";
+        //for (let i in gadget) {
+        //    log("IsEnumerable",gadget.propertyIsEnumerable(i), "hasOwnProperty", gadget.hasOwnProperty(i), i, gadget[i]);
+        //}
+
+        log(gadget.__proto__);
+    }
+
+    {
+        //String.prototype.reverse=function() {
+        //    Array.prototype.reverse.apply(this.split('')).join('');
+        //}
+        //log("I'm from China".reverse());
     }
 } 
 
 var log = (...messages) => {
-    console.log(messages.join('\t'));
+    const message = messages.join('\t');
+    callbackLog(message);
+    console.log(message);
 }
 
 function foo(a, b) { return a * b }

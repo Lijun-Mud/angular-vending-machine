@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
-import testObject from "./js.object";
+//import runTest from "./js.prototype";
+import runTest from "./js.inherit";
 
 @Component({
     selector: 'counter',
@@ -15,7 +16,7 @@ export class CounterComponent implements OnInit {
     private counter=0;
 
     ngOnInit(): void {
-        testObject(this.log);
+        runTest(this.log);
     }
 
     private log = (msg) => {

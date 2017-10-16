@@ -80,12 +80,22 @@ export default function (callback) {
                     return true;
                 }
             });
-        log(Object.preventExtensions(p));
+        log("Object.preventExtensions(p)",Object.preventExtensions(p));
+    }
+    {
+        let a = new Set([1, 2, 3]);
+        let b = new Set([4,  3, 2]);
+        let union = new Set([...a, ...b]);
+        let intersect = new Set([...a].filter(x => b.has(x)));
+        let difference = new Set([...a].filter(x => !b.has(x)));
+        log(union, intersect, difference);
     }
 } 
 
 var getObjectInfo = (obj) => {
     if (typeof obj !== "object") return obj;
+    //if (obj instanceof Array || obj instanceof Set) return [...obj];
+    if (obj.constructor=== Array || obj.constructor=== Set) return [...obj];
     var msg = "";
     for (let i in obj) {
         msg += "\t" + i + " : " + obj[i];

@@ -90,6 +90,19 @@ export default function (callback) {
         let difference = new Set([...a].filter(x => !b.has(x)));
         log(union, intersect, difference);
     }
+
+    {
+        let obj= {
+            *[Symbol.iterator]() {
+                yield 1;
+                yield 2;
+                yield { final:33 };
+            }
+        }
+        for (var l of obj) {
+            log(l);
+        }
+    }
 } 
 
 var getObjectInfo = (obj) => {

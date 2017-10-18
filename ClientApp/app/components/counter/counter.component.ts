@@ -2,7 +2,8 @@ import { Component,OnInit } from '@angular/core';
 //import runTest from "./js.prototype";
 //import runTest from "./js.inherit";
 //import runTest from "./js.es6";
-import runTest from "./js.interview";
+//import runTest from "./js.interview";
+import runTest from "./js.es6.promise";
 
 @Component({
     selector: 'counter',

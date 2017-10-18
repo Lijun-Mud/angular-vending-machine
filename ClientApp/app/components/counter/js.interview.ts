@@ -54,29 +54,4 @@ export default function (callback) {
         }
         console.timeEnd("array timer");
     }
-    {
-        let f=function *() {
-            for (let i = 0;true; i++) {
-                let reset = yield i;
-                if (reset) i = -1;
-            }
-        }
-        let g = f();
-        debugger;
-        log(g.next(), g.next(), g.next(true));
-
-        let dataConsumer=function *() {
-            console.log("started");
-            console.log(`1. ${yield}`);
-            console.log(`2. ${yield}`);
-            return "result";
-        }
-        let gen = dataConsumer();
-        gen.next();
-        gen.next("a");
-        gen.next("b");
-        //for (let l of dataConsumer()) {
-        //    console.log(l);
-        //}
-    }
 } 

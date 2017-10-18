@@ -1,6 +1,6 @@
-﻿export default function (callback,...messages) {
+﻿export default function (callback, ...messages) {
+    console.log(messages);
     let msgs = messages.map((x = "undefined") => {
-        console.log(x);
         return getObjectInfo(x);
     });
     const message = msgs.map(x => x.toString()).join('\t');
